@@ -14,7 +14,8 @@ menu = """Electronic Phone Book
 2. Set an entry
 3. Delete an entry
 4. List all entries
-5. Quit """
+5. Sort entries by name
+6. Quit """
 
 #create empty string to store user input
 user_input = ""
@@ -24,8 +25,11 @@ user_input = ""
 def user_input1():
     #ask user for the first name of the contact  
     first_name = raw_input("What is the contact's first name? ")
+    if first_name in phone_book:
     #obtain phone number using dictionary key
-    print "%s's phone number is: " % first_name + phone_book[first_name]
+        print "%s's phone number is: " % first_name + phone_book[first_name]
+    else:
+        print "Contact does not exist."
     start()
 
 def user_input2():
@@ -46,13 +50,18 @@ def user_input4():
     start()
 
 def user_input5():
+    sorted_phone = sorted(phone_book)
+    print sorted_phone
+    start()
+
+def user_input6():
     print "Session Ended"
 
 def start():
     #print menu
     print menu
     #collect user's desired action
-    user_input = raw_input("What do you want to do (select 1-5)? ")
+    user_input = raw_input("What do you want to do (select 1-6)? ")
     #if statement for 1 - 5 to determine outcome
 
     #if user selects 1, look up entry
@@ -71,9 +80,12 @@ def start():
     if user_input == "4":
       return user_input4()
 
-    #if user selects 5, quit  
     if user_input == "5":
       return user_input5()
+
+    #if user selects 6, quit  
+    if user_input == "6":
+      return user_input6()
 
 #start program
 start()
